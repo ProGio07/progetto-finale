@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progetto Finale</title>
-    <link rel="stylesheet" href="static/style/main.css">
-    <script src="javascript/main.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/style/main.css">
+    <script src="../javascript/main.js"></script>
 </head>
 <body>
+    <h1>New Product</h1>
     <form>
-        <input type="text" id="username" value="John"><br>
-        <input type="text" id="password" value="Doe"><br><br>
-        <input type="button" value="Submit" onclick="reg()">
-    </form> 
-    <div id="response"></div>
+        <h1>name</h1>
+        <input type="text" id="name">
+        <h1>descrizione</h1>
+        <input type="text" id="descrizione">
+        <h1>image</h1>
+        <input type="url" id="url_immagine">
+        <h1>price</h1>
+        <input type="number" id="prezzo">
+        <input type="button" value="Crea Prodotto" onclick="product()">
+        <input type="button" value="Logout" onclick="logout()">
+    </form>
+    <div id="products">
+    </div>
 </body>
 </html>

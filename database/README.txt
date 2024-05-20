@@ -1,0 +1,1 @@
+when you create the database give it the name finalproject or change the config in main.py
