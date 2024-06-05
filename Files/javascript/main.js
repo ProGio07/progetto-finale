@@ -12,7 +12,6 @@ async function product() {
         headers: {
             'content-Type' : 'application/json'
         },
-
         body: JSON.stringify({
             nome: name,
             username: username,
@@ -27,12 +26,24 @@ async function product() {
     if(response.msg === "Newproduct"){
         const productContainer = document.getElementById("products");
         const newProductHTML = `
-            <div>
-                <img src="${url_immagine}">
-            </div>
+        <div>
+            <p>${username}</p>
+        </div>
+        <div>
+            <p>${name}</p>
+        </div>
+        <a href="buy.html">
+            <img src="${url_immagine}">
+        </a>
+        <div>
+            <p>${prezzo}</p>
+        </div>            
+        <div>
+            <p>${descrizione}</p>
+        </div>
         `;
         productContainer.insertAdjacentHTML('beforeend', newProductHTML);
-        
+        location.reload();
     }
 }
 
@@ -48,8 +59,21 @@ async function viewProducts() {
         const productContainer = document.getElementById("products");
         const newProductHTML = `
             <div>
-                <img src="${response[i].url_immagine}">
+                <p>${response[i].username}</p>
             </div>
+            <div>
+                <p>${response[i].nome}</p>
+            </div>
+            <a href="buy.html">
+                <img src="${response[i].url_immagine}">
+            </a>
+            <div>
+                <p>${response[i].prezzo}</p>
+            </div>            
+            <div>
+                <p>${response[i].descrizione}</p>
+            </div>
+            <hr>
         `;
         productContainer.insertAdjacentHTML('beforeend', newProductHTML);
     }
@@ -62,12 +86,25 @@ window.onload = viewProducts();
 async function checkLoginAndRedirect() {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
-
     if (!username || !password) {
         window.location.href = "login.html";
     }
+    else{
+        const request = await fetch("http://127.0.0.1:8000/login", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+        const response = await request.json();
+        if (response.msg != "Logged") {
+            window.location.href = "login.html";
+        }
+    }
 }
-window.onload = checkLoginAndRedirect;
+
+window.onload = checkLoginAndRedirect();
 
 // Logout
 

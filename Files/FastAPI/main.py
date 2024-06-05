@@ -75,7 +75,6 @@ def register(user: User):
 
 # Login
 
-
 @app.post("/login")
 def login(login: Login):
     if username_pass_exists(login.username, login.password):
@@ -103,7 +102,6 @@ def newproduct(prodotto: Prodotto):
         raise HTTPException(status_code=400, detail="something went wrong")
 
 # View Product
-
 
 @app.get("/products")
 async def get_all_products():

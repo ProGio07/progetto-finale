@@ -29,7 +29,6 @@ async function log() {
 async function checkCredentialsAndRedirect() {
     const username = localStorage.getItem("username");
     const password = localStorage.getItem("password");
-    
     if (username && password) {
         const request = await fetch("http://127.0.0.1:8000/login", {
             method: 'POST',
@@ -39,11 +38,10 @@ async function checkCredentialsAndRedirect() {
             body: JSON.stringify({ username, password })
         });
         const response = await request.json();
-        
         if (response.msg === "Logged") {
             window.location.href = "main.html";
         }
     }
 }
 
-window.onload = checkCredentialsAndRedirect;
+window.onload = checkCredentialsAndRedirect();
