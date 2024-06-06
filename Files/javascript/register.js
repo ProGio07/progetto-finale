@@ -26,7 +26,7 @@ async function reg() {
     console.log(response);
 
     if (response.msg === "Utente inserito con successo") {
-        window.location.href = "templates/login.html";
+        window.location.href = "/templates/login.html";
     } else {
         usernameErrorMessage.textContent = "Username già esistente";
     }
