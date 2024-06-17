@@ -2,7 +2,7 @@
 useralphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'
 passwordalphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_!#$%&"-.?'
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, HttpUrl
 
 
 # Register
@@ -17,12 +17,12 @@ class Login(BaseModel):
 
 # Prodotto
 class Prodotto(BaseModel):
-    nome: str
+    nome: str = Field(..., min_lenght=1, max_length=255)
     username: str = Field(..., min_length=3, max_length=20, pattern=r'^[a-zA-Z0-9_]+$')
     password: str = Field(..., min_length=8, pattern=r'^[a-zA-Z0-9_!#$%&"-.?]*$')
-    descrizione: str
+    descrizione: str = Field(..., min_lenght=1, max_length=255)
     prezzo: float
-    url_immagine: str
+    url_immagine: HttpUrl
 
 # View Prodotto
 class ProdottoView(BaseModel):
