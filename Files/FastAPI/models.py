@@ -2,7 +2,8 @@
 useralphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'
 passwordalphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_!#$%&"-.?'
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field, field_validator
+from urllib.parse import urlparse
 
 
 # Register
@@ -21,8 +22,15 @@ class Prodotto(BaseModel):
     username: str = Field(..., min_length=3, max_length=20, pattern=r'^[a-zA-Z0-9_]+$')
     password: str = Field(..., min_length=8, pattern=r'^[a-zA-Z0-9_!#$%&"-.?]*$')
     descrizione: str = Field(..., min_lenght=1, max_length=255)
-    prezzo: float
-    url_immagine: HttpUrl
+    prezzo: float = Field(..., gt=0)
+    url_immagine: str
+
+    @field_validator('url_immagine')
+    def validate_url(cls, v: str) -> str:
+        parsed_url = urlparse(v)
+        if not parsed_url.scheme or not parsed_url.netloc:
+            raise ValueError('URL non valido')
+        return v
 
 # View Prodotto
 class ProdottoView(BaseModel):

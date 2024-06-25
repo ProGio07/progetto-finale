@@ -36,7 +36,7 @@ async function product() {
     }
 
     // Validazione dell'URL dell'immagine
-    if (!isValidUrl(url_immagine)) {
+    if (!isValidImageUrl(url_immagine)) {
         errors.push("URL non valido");
         document.getElementById("url-immagine-error").textContent = "URL non valido";
     } else {
@@ -60,7 +60,7 @@ async function product() {
     const request = await fetch("http://127.0.0.1:8000/newproduct", {
         method: 'POST',
         headers: {
-            'content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             nome: name,
@@ -79,21 +79,26 @@ async function product() {
     if (response.msg === "Newproduct") {
         const productContainer = document.getElementById("products");
         const newProductHTML = `
-            <div>
-                <p>${username}</p>
+            <div class="product">
+                <div class="product-image">
+                    <p>${username}</p>
+                    <a href="buy.html">
+                        <img src="${url_immagine}" alt="${name}">
+                    </a>
+                </div>
+                <div class="product-details">
+                    <div class="product-title">
+                        <p>${name}</p>
+                    </div>
+                    <div class="product-description">
+                        <p>${descrizione}</p>
+                    </div>
+                    <div class="product-price">
+                        <p>${prezzo} €</p>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p>${name}</p>
-            </div>
-            <a href="buy.html">
-                <img src="${url_immagine}">
-            </a>
-            <div>
-                <p>${prezzo}</p>
-            </div>            
-            <div>
-                <p>${descrizione}</p>
-            </div>
+            <hr class="custom-hr">
         `;
         productContainer.insertAdjacentHTML('beforeend', newProductHTML);
         location.reload(); // Ricarica la pagina per mostrare il nuovo prodotto
@@ -112,20 +117,24 @@ async function viewProducts() {
 
     response.forEach(product => {
         const newProductHTML = `
-            <div>
-                <p>${product.username}</p>
-            </div>
-            <div>
-                <p>${product.nome}</p>
-            </div>
-            <a href="buy.html">
-                <img src="${product.url_immagine}">
-            </a>
-            <div>
-                <p>${product.prezzo}</p>
-            </div>            
-            <div>
-                <p>${product.descrizione}</p>
+            <div class="product">
+                <div class="product-image">
+                    <p>${product.username}</p>
+                    <a href="buy.html">
+                        <img src="${product.url_immagine}" alt="${product.nome}">
+                    </a>
+                </div>
+                <div class="product-details">
+                    <div class="product-title">
+                        <p>${product.nome}</p>
+                    </div>
+                    <div class="product-description">
+                        <p>${product.descrizione}</p>
+                    </div>
+                    <div class="product-price">
+                        <p>${product.prezzo} €</p>
+                    </div>
+                </div>
             </div>
             <hr>
         `;
@@ -176,14 +185,11 @@ document.getElementById("prezzo").addEventListener("input", function () {
     document.getElementById("prezzo-error").textContent = "";
 });
 
-// Funzione per validare un URL
-function isValidUrl(url) {
-    try {
-        new URL(url);
-        return true;
-    } catch (_) {
-        return false;
-    }
+// Funzione per validare un URL di immagine
+function isValidImageUrl(url) {
+    // Regex per verificare se l'URL termina con un'estensione di file immagine comune
+    const imageExtensions = /\.(jpg|jpeg|png|gif)$/i;
+    return imageExtensions.test(url);
 }
 
 // Al caricamento della pagina, verifica il login e visualizza i prodotti
