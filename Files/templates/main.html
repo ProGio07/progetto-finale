@@ -1,209 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form in Offcanvas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
-    <style>
-        .custom-hr {
-            height: 1px;
-            background-color: #CCCCCC; /* Grigio chiaro */
-            border: none;
-            margin: 20px 0;
-        }
-        
-        body {
-            background-color: #f2e9e4;
-        }
-
-        .navbar {
-            background-color: #eee2db !important; /* Colore di sfondo della navbar */
-        }
-        
-        .offcanvas {
-            background-color: #d8ccc5; /* Colore di sfondo leggermente più scuro per l'offcanvas */
-        }
-        
-        .error-message {
-            color: red;
-            font-size: 0.8rem;
-            margin-top: 0.25rem;
-        }
-
-        /* Aggiunto stile per il layout dei prodotti */
-        .product-container {
-            margin-top: 70px; /* Altezza della navbar */
-            padding: 20px;
-        }
-
-        .product {
-            display: flex;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-
-        .product-image {
-            flex: 0 0 30%; /* Larghezza fissa per l'immagine */
-            margin-right: 10px;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: auto;
-        }
-
-        .product-details {
-            flex: 1; /* Occupa lo spazio rimanente */
-            display: flex;
-            flex-direction: column; /* Organizza i dettagli in colonna */
-        }
-
-        .product-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .product-description {
-            margin-bottom: 10px;
-        }
-
-        .product-price {
-            font-size: 16px;
-            font-weight: bold;
-            text-align: right;
-            margin-top: auto; /* Posiziona il prezzo in basso a destra */
-        }
-
-        /* Stili per i bottoni degli offcanvas */
-        .navbar-toggler {
-            margin-left: 10px; /* Aggiunto margine sinistro per separare i bottoni */
-        }
-
-        /* Stili per i link nell'offcanvas */
-        .offcanvas-body ul {
-            padding: 0;
-        }
-
-        .offcanvas-body ul li {
-            margin-bottom: 10px;
-        }
-
-        .offcanvas-body ul li a {
-            color: #212529; /* Colore del testo */
-            text-decoration: none; /* Rimuove il sottolineato */
-            font-size: 1rem;
-            transition: color 0.3s ease; /* Transizione per il cambio colore */
-        }
-
-        .offcanvas-body ul li a:hover {
-            color: #0d6efd; /* Colore del testo al passaggio del mouse */
-        }
-
-        /* Stili per i bottoni nell'offcanvas */
-        .offcanvas-body button {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: none;
-            border: none;
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .offcanvas-body button:hover {
-            background-color: #f2f2f2; /* Colore di sfondo al passaggio del mouse */
-        }
-
-        .offcanvas-body button:focus {
-            outline: none; /* Rimuove l'outline al focus */
-        }
-    </style>
-</head>
-<body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/style/main.css" />
+  </head>
+  <body>
     <nav class="navbar bg-body-tertiary fixed-top">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <a class="navbar-brand">Andrelio</a>
-            
-            <!-- Gruppo per i bottoni degli offcanvas -->
-            <div class="d-flex">
-                <!-- Bottone per il primo offcanvas -->
-                <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCreateNFT" aria-controls="offcanvasCreateNFT" aria-label="Toggle navigation">
-                    <i class="bi bi-plus"></i>
-                </button>
-                
-                <!-- Bottone per il secondo offcanvas -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasOptions" aria-controls="offcanvasOptions" aria-label="Toggle navigation">
-                    <i class="bi bi-list"></i>
-                </button>
-            </div>
-            
-            <!-- Offcanvas per creare una NFT -->
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCreateNFT" aria-labelledby="offcanvasCreateNFTLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasCreateNFTLabel">Crea una NFT</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <form id="nft-form">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="name" placeholder="Inserisci il nome dell'NFT">
-                            <div id="name-error" class="error-message"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="descrizione" class="form-label">Descrizione</label>
-                            <input type="text" class="form-control" id="descrizione" placeholder="Inserisci una breve descrizione dell'NFT">
-                            <div id="descrizione-error" class="error-message"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="url_immagine" class="form-label">URL Immagine</label>
-                            <input type="url" class="form-control" id="url_immagine" placeholder="Inserisci l'URL dell'immagine per l'NFT">
-                            <div id="url-immagine-error" class="error-message"></div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="prezzo" class="form-label">Prezzo</label>
-                            <input type="number" class="form-control" id="prezzo" placeholder="Inserisci un prezzo per l'NFT">
-                            <div id="prezzo-error" class="error-message"></div>
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="button" class="btn btn-light" onclick="product()">Crea Prodotto</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
-            <!-- Offcanvas per le opzioni -->
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasOptions" aria-labelledby="offcanvasOptionsLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasOptionsLabel">Utilità</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="list-unstyled">
-                        <button onclick="logout()" class="btn btn-light">Logout</button>
-                        <button onclick="location.href = '../static/assets/Termini.pdf'" class="btn btn-light">Termini e servizi</button>
-                        <button class="btn btn-light">Chi siamo</button>
-                        <button class="btn btn-light">Prossimi aggiornamenti</button>
-                        <button class="btn btn-light">Come funziona?</button>
-                    </ul>
-                </div>
-            </div>
-            
+      <div
+        class="container-fluid d-flex justify-content-between align-items-center"
+      >
+        <a class="navbar-brand">Andrelio</a>
+
+        <!-- Gruppo per i bottoni degli offcanvas -->
+        <div class="d-flex">
+          <!-- Bottone per il primo offcanvas -->
+          <button
+            class="navbar-toggler me-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasCreateNFT"
+            aria-controls="offcanvasCreateNFT"
+            aria-label="Toggle navigation"
+          >
+            <i class="bi bi-plus"></i>
+          </button>
+
+          <!-- Bottone per il secondo offcanvas -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasOptions"
+            aria-controls="offcanvasOptions"
+            aria-label="Toggle navigation"
+          >
+            <i class="bi bi-list"></i>
+          </button>
         </div>
+
+        <!-- Offcanvas per creare una NFT -->
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasCreateNFT"
+          aria-labelledby="offcanvasCreateNFTLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasCreateNFTLabel">
+              Crea una NFT
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <form id="nft-form">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nome</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Inserisci il nome dell'NFT"
+                />
+                <div id="name-error" class="error-message"></div>
+              </div>
+              <div class="mb-3">
+                <label for="descrizione" class="form-label">Descrizione</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="descrizione"
+                  placeholder="Inserisci una breve descrizione dell'NFT"
+                />
+                <div id="descrizione-error" class="error-message"></div>
+              </div>
+              <div class="mb-3">
+                <label for="url_immagine" class="form-label"
+                  >URL Immagine</label
+                >
+                <input
+                  type="url"
+                  class="form-control"
+                  id="url_immagine"
+                  placeholder="Inserisci l'URL dell'immagine per l'NFT"
+                />
+                <div id="url-immagine-error" class="error-message"></div>
+              </div>
+              <div class="mb-3">
+                <label for="prezzo" class="form-label">Prezzo</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="prezzo"
+                  placeholder="Inserisci un prezzo per l'NFT"
+                />
+                <div id="prezzo-error" class="error-message"></div>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="button" class="btn btn-light" onclick="product()">
+                  Crea Prodotto
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Offcanvas per le opzioni -->
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasOptions"
+          aria-labelledby="offcanvasOptionsLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasOptionsLabel">Utilità</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="list-unstyled">
+              <button onclick="logout()" class="btn btn-light">Logout</button>
+              <button
+                onclick="location.href = '../static/assets/Termini.pdf'"
+                class="btn btn-light"
+              >
+                Termini e servizi
+              </button>
+              <button
+                onclick="location.href = './working.html'"
+                class="btn btn-light"
+              >
+                Chi siamo
+              </button>
+              <button
+                onclick="location.href = './working.html'"
+                class="btn btn-light"
+              >
+                Prossimi aggiornamenti
+              </button>
+              <button
+                onclick="location.href = './working.html'"
+                class="btn btn-light"
+              >
+                Come funziona?
+              </button>
+            </ul>
+          </div>
+        </div>
+      </div>
     </nav>
 
     <!-- Container per i prodotti -->
     <div class="container-fluid product-container" id="products">
-        <!-- Qui verranno inseriti i prodotti -->
+      <!-- Qui verranno inseriti i prodotti -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../javascript/main.js"></script>
-</body>
+  </body>
 </html>

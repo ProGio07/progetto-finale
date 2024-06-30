@@ -1,1 +1,1 @@
-when you create the database give it the name finalproject or change the config in main.py
+when you create the database give it the name "progettofinale" or change the config in main.py, otherwise the backend will not be able to connect to the database

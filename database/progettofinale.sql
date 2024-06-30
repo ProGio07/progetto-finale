@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 20, 2024 alle 22:30
+-- Creato il: Giu 30, 2024 alle 13:22
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.2.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `prodotti` (
   `id_prodotto` int(11) NOT NULL,
   `nome` varchar(255) DEFAULT NULL,
-  `username` varchar(10) DEFAULT NULL,
+  `username` varchar(10) NOT NULL,
   `descrizione` varchar(255) NOT NULL,
   `url_immagine` varchar(255) NOT NULL,
   `prezzo` int(10) DEFAULT NULL
@@ -72,7 +72,7 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `prodotti`
 --
 ALTER TABLE `prodotti`
-  MODIFY `id_prodotto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_prodotto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- Limiti per le tabelle scaricate

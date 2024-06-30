@@ -1,86 +1,116 @@
+.custom-hr {
+  height: 1px;
+  background-color: #cccccc; /* Grigio chiaro */
+  border: none;
+  margin: 20px 0;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100%;
+  background-color: #f2e9e4;
 }
-
-.background-video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.background-video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.form-container {
-    position: relative;
-    z-index: 1;
-}
-
-.card {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 25px;
-}
-
-.rounded-video {
-    border-radius: 15px;
-}
-
-.transparent {
-    background-color: rgba(255, 255, 255, 0.5) !important; /* Bianco con 50% di trasparenza */
-    border: none;
-}
-
-.bg-custom {
-    background-color: rgba(255, 255, 255, 0.5) !important; /* Sostituisci con il colore desiderato */
-}
-
-
-
-.margin{
-    margin-right: 5px !important;
-}
-
-
 
 .navbar {
-    position: fixed; /* Navbar con posizione fissa */
-    top: 0; /* Navbar all'inizio della pagina */
-    width: 100%;
-    z-index: 1000; /* Assicura che la navbar sia sopra tutto il resto */
+  background-color: #eee2db !important; /* Colore di sfondo della navbar */
 }
 
-
-html, body {
-    height: 100%;
-    overflow: hidden; /* Rimuove lo scroll */
+.offcanvas {
+  background-color: #d8ccc5; /* Colore di sfondo leggermente più scuro per l'offcanvas */
 }
 
-.space{
-    padding-bottom: 200px !important;
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
 }
 
-
-.logo-container {
-    text-align: center;
-    padding-top: 50px; /* Spazio sopra il logo */
+/* Aggiunto stile per il layout dei prodotti */
+.product-container {
+  margin-top: 70px; /* Altezza della navbar */
+  padding: 20px;
 }
 
-.logo {
-    width: 500px; /* Larghezza del logo */
-    height: auto; /* Altezza automatica per mantenere l'aspetto originale */
+.product {
+  display: flex;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
-.logo-container{
-    padding-top: 10px;
+.product-image {
+  flex: 0 0 30%; /* Larghezza fissa per l'immagine */
+  margin-right: 10px;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+}
+
+.product-details {
+  flex: 1; /* Occupa lo spazio rimanente */
+  display: flex;
+  flex-direction: column; /* Organizza i dettagli in colonna */
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.product-description {
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: right;
+  margin-top: auto; /* Posiziona il prezzo in basso a destra */
+}
+
+/* Stili per i bottoni degli offcanvas */
+.navbar-toggler {
+  margin-left: 10px; /* Aggiunto margine sinistro per separare i bottoni */
+}
+
+/* Stili per i link nell'offcanvas */
+.offcanvas-body ul {
+  padding: 0;
+}
+
+.offcanvas-body ul li {
+  margin-bottom: 10px;
+}
+
+.offcanvas-body ul li a {
+  color: #212529; /* Colore del testo */
+  text-decoration: none; /* Rimuove il sottolineato */
+  font-size: 1rem;
+  transition: color 0.3s ease; /* Transizione per il cambio colore */
+}
+
+.offcanvas-body ul li a:hover {
+  color: #0d6efd; /* Colore del testo al passaggio del mouse */
+}
+
+/* Stili per i bottoni nell'offcanvas */
+.offcanvas-body button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.offcanvas-body button:hover {
+  background-color: #f2f2f2; /* Colore di sfondo al passaggio del mouse */
+}
+
+.offcanvas-body button:focus {
+  outline: none; /* Rimuove l'outline al focus */
 }

@@ -1,86 +1,91 @@
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .background-video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
 }
 
 .background-video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .form-container {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .card {
-    backdrop-filter: blur(20px);
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 25px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 25px;
 }
 
 .rounded-video {
-    border-radius: 15px;
+  border-radius: 15px;
 }
 
 .transparent {
-    background-color: rgba(255, 255, 255, 0.5) !important; /* Bianco con 50% di trasparenza */
-    border: none;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ) !important; /* Bianco con 50% di trasparenza */
+  border: none;
 }
 
 .bg-custom {
-    background-color: rgba(255, 255, 255, 0.5) !important; /* Sostituisci con il colore desiderato */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.5
+  ) !important; /* Sostituisci con il colore desiderato */
 }
 
-
-
-.margin{
-    margin-right: 5px !important;
+.margin {
+  margin-right: 5px !important;
 }
-
-
 
 .navbar {
-    position: fixed; /* Navbar con posizione fissa */
-    top: 0; /* Navbar all'inizio della pagina */
-    width: 100%;
-    z-index: 1000; /* Assicura che la navbar sia sopra tutto il resto */
+  position: fixed; /* Navbar con posizione fissa */
+  top: 0; /* Navbar all'inizio della pagina */
+  width: 100%;
+  z-index: 1000; /* Assicura che la navbar sia sopra tutto il resto */
 }
 
-
-html, body {
-    height: 100%;
-    overflow: hidden; /* Rimuove lo scroll */
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* Rimuove lo scroll */
 }
 
-.space{
-    padding-bottom: 200px !important;
+.space {
+  padding-bottom: 200px !important;
 }
-
 
 .logo-container {
-    text-align: center;
-    padding-top: 50px; /* Spazio sopra il logo */
+  text-align: center;
+  padding-top: 50px; /* Spazio sopra il logo */
 }
 
 .logo {
-    width: 500px; /* Larghezza del logo */
-    height: auto; /* Altezza automatica per mantenere l'aspetto originale */
+  width: 500px; /* Larghezza del logo */
+  height: auto; /* Altezza automatica per mantenere l'aspetto originale */
 }
 
-.logo-container{
-    padding-top: 10px;
+.logo-container {
+  padding-top: 10px;
 }
